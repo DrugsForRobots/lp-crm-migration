@@ -1,0 +1,354 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="How the Libertarian National Committee moved its member and donor database from Raiser's Edge to CiviCRM to Zoho, who was involved, in their own words, and the gaps and missing documents in the record.">
+<link rel="canonical" href="https://drugsforrobots.github.io/lp-crm-migration/">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="The CRM Migration Record">
+<meta property="og:title" content="The CRM Migration Record">
+<meta property="og:description" content="How the Libertarian National Committee moved its member and donor database from Raiser's Edge to CiviCRM to Zoho, who was involved, in their own words, and the gaps and missing documents in the record.">
+<meta property="og:url" content="https://drugsforrobots.github.io/lp-crm-migration/">
+<meta property="og:image" content="https://drugsforrobots.github.io/lp-crm-migration/preview.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="The CRM Migration Record: Raiser's Edge to CiviCRM to Zoho, 2015 to 2026">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="The CRM Migration Record">
+<meta name="twitter:description" content="How the Libertarian National Committee moved its member and donor database from Raiser's Edge to CiviCRM to Zoho, who was involved, in their own words, and the gaps and missing documents in the record.">
+<meta name="twitter:image" content="https://drugsforrobots.github.io/lp-crm-migration/preview.png">
+<style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}img{max-width:100%}[hidden]{display:none!important}</style>
+<title>The CRM Migration Record</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Public+Sans:ital,wght@0,400..700;1,400&display=swap">
+<style>
+  /* Layout: one navy sheet, same family as the Parliamentary Cheat Sheet, Delegate Churn and LNC Roster; a vertical flowchart by phase, then the gaps and the people. Single dark look by design. */
+  :root {
+    --navy: #13213C; --panel: #1C2D4D; --deep: #0F1A30; --cream: #F5F1E8; --mist: #C5CFDF; --dim: #A3AFC4;
+    --gold: #E2B13C; --slate: #3A4D70; --line: rgba(197, 207, 223, 0.16); --warn: #E8875A;
+    --serif: 'Libre Baskerville', Georgia, serif; --sans: 'Public Sans', Arial, sans-serif;
+    color-scheme: dark;
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--deep); color: var(--cream); font-family: var(--sans); line-height: 1.5;
+         padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); padding-block: 24px 48px; }
+  .sheet { max-width: 72rem; margin: 0 auto; background: var(--navy); border-radius: 16px; padding: 3rem; display: grid; gap: 2.75rem; }
+  @media (max-width: 40rem) { .sheet { padding: 1.25rem; gap: 2rem; } }
+  h1 { font-family: var(--serif); font-weight: 700; font-size: clamp(2rem, 5vw, 3.5rem); line-height: 1.1; margin: 0; text-wrap: balance; color: var(--cream); }
+  h2 { font-family: var(--serif); font-weight: 700; font-size: clamp(1.3rem, 2.6vw, 1.8rem); line-height: 1.2; margin: 0; text-wrap: balance; color: var(--cream); }
+  h3 { font-family: var(--sans); font-weight: 700; font-size: 1.05rem; line-height: 1.3; margin: 0; color: var(--cream); }
+  p { margin: 0; max-width: 70ch; }
+  .subtitle { font-family: var(--serif); font-style: italic; font-size: 1.1rem; color: var(--gold); }
+  .eyebrow { font-size: 0.8rem; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold); margin: 0; }
+  .rule { width: 6rem; height: 4px; background: var(--gold); }
+  .lede { font-size: clamp(1.05rem, 1.8vw, 1.3rem); color: var(--mist); }
+  .lede b, .note b { color: var(--cream); }
+  .note { font-size: 0.92rem; color: var(--mist); }
+  .fine { font-size: 0.82rem; color: var(--dim); }
+  section { display: grid; gap: 1rem; min-width: 0; }
+  .head { display: grid; gap: 0.4rem; }
+  .card { background: var(--panel); border-radius: 16px; padding: 1.25rem 1.5rem; display: grid; gap: 0.6rem; align-content: start; min-width: 0; }
+  .cite { font-size: 0.78rem; font-weight: 600; color: var(--gold); }
+  .say { font-family: var(--serif); font-style: italic; color: var(--cream); background: var(--deep); padding: 0.7rem 0.9rem; border-radius: 8px; font-size: 0.95rem; }
+  .say .cite { font-family: var(--sans); font-style: normal; display: block; margin-top: 0.35rem; }
+  .lbl { font-size: 0.7rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--dim); }
+  a { color: var(--gold); }
+  a:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; }
+
+  /* Key */
+  .key { display: flex; flex-wrap: wrap; gap: 0.75rem 1.5rem; font-size: 0.85rem; color: var(--mist); }
+  .key span { display: inline-flex; align-items: center; gap: 0.5rem; }
+  .sw { width: 1.4rem; height: 0.9rem; border-radius: 4px; background: var(--panel); display: inline-block; }
+  .sw.vote { border: 2px solid var(--gold); }
+  .sw.gap { border: 2px dashed var(--warn); background: transparent; }
+
+  /* Flowchart */
+  .phase { display: grid; gap: 0; }
+  .phase-head { display: grid; gap: 0.3rem; padding-bottom: 1.25rem; }
+  .phase-head .years { font-family: var(--serif); font-weight: 700; font-size: 1.6rem; color: var(--gold); line-height: 1; font-variant-numeric: tabular-nums; }
+  .flow { display: grid; gap: 0; }
+  .node { position: relative; display: grid; grid-template-columns: 7.5rem 1fr; gap: 1.25rem; padding-bottom: 1.75rem; }
+  .node::before { content: ""; position: absolute; left: calc(7.5rem + 0.625rem - 1px); top: 0.6rem; bottom: 0; width: 2px; background: var(--slate); }
+  .node:last-child { padding-bottom: 0; }
+  .node:last-child::before { display: none; }
+  .node .when { font-family: var(--serif); font-weight: 700; font-size: 0.95rem; color: var(--gold); text-align: right; padding-top: 1.1rem; font-variant-numeric: tabular-nums; position: relative; }
+  .node .when::after { content: ""; position: absolute; right: calc(-0.625rem - 6px); top: 1.35rem; width: 12px; height: 12px; border-radius: 50%; background: var(--gold); box-shadow: 0 0 0 4px var(--navy); }
+  .node.gapnode .when { color: var(--warn); }
+  .node.gapnode .when::after { background: var(--navy); border: 2px dashed var(--warn); }
+  .node .card { margin-left: 0.6rem; }
+  .node.vote .card { border: 2px solid var(--gold); }
+  .node.gapnode .card { background: transparent; border: 2px dashed var(--warn); }
+  .tags { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+  .tag { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.02em; padding: 0.15rem 0.55rem; border-radius: 999px; background: var(--deep); color: var(--mist); }
+  .tag.kind { background: transparent; border: 1px solid var(--gold); color: var(--gold); text-transform: uppercase; letter-spacing: 0.12em; }
+  .gapnode .tag.kind { border-color: var(--warn); color: var(--warn); }
+  .warn { color: var(--warn); font-weight: 700; }
+  .arrow-down { display: grid; justify-items: start; padding-left: calc(7.5rem + 1.25rem - 0.6rem); color: var(--gold); font-size: 1.4rem; line-height: 1; padding-block: 0.4rem 1.6rem; }
+  @media (max-width: 40rem) {
+    .node { grid-template-columns: 1fr; gap: 0.4rem; padding-left: 1.4rem; }
+    .node::before { left: 0.35rem; top: 0.4rem; }
+    .node .when { text-align: left; padding-top: 0; }
+    .node .when::after { right: auto; left: -1.4rem; top: 0.3rem; }
+    .node .card { margin-left: 0; }
+    .arrow-down { padding-left: 0; }
+  }
+
+  /* Gaps and people */
+  .grid { display: grid; gap: 1rem; grid-template-columns: repeat(auto-fit, minmax(min(100%, 19rem), 1fr)); }
+  .gapcard { background: transparent; border: 2px dashed var(--warn); }
+  .gapcard .id { font-family: var(--serif); font-weight: 700; font-size: 1.5rem; color: var(--warn); line-height: 1; }
+  .person .role { color: var(--gold); font-size: 0.85rem; font-weight: 600; }
+  .searched { font-size: 0.86rem; color: var(--mist); border-top: 1px solid var(--line); padding-top: 0.55rem; }
+  .searched b { color: var(--gold); font-weight: 600; }
+  ul.plain { margin: 0; padding-left: 1.1rem; display: grid; gap: 0.25rem; color: var(--mist); font-size: 0.9rem; }
+</style>
+
+</head>
+<body>
+<div class="sheet">
+  <header class="head" style="gap:1rem">
+    <h1>The CRM Migration Record</h1>
+    <p class="subtitle">Raiser’s Edge to CiviCRM to Zoho, 2015–2026</p>
+    <div class="rule"></div>
+    <p class="lede">How the Libertarian National Committee moved its member and donor database off <b>Raiser’s Edge</b>, built and then abandoned <b>CiviCRM</b>, moved to <b>Zoho</b>, and sold the CiviCRM system to <b>Ken Moellman</b>. Each step shows who acted, what the record says in their words, and where the record goes silent.</p>
+    <p class="fine">Every quotation from the minutes was checked word for word against the cited PDF page. Quotations marked <span class="cite">Recording</span> come from YouTube auto-captions and were checked against the transcript at the time given; captions can mishear words. Payment totals are from the LNC’s FEC filings. The 2025–26 contract and breach quotations come from the board’s released breach materials, checked in the project’s 2025–2026 history.</p>
+    <div class="key">
+      <span><i class="sw"></i> Recorded event</span>
+      <span><i class="sw vote"></i> Vote or binding decision</span>
+      <span><i class="sw gap"></i> Gap in the record or missing document</span>
+    </div>
+  </header>
+
+  <!-- PHASE 1 -->
+  <section class="phase" aria-labelledby="p1">
+    <div class="phase-head"><span class="years">2014–2016</span><p class="eyebrow">Phase One</p><h2 id="p1">The First Attempt To Leave Raiser’s Edge</h2>
+      <p class="note">The LNC had paid Blackbaud, Raiser’s Edge’s maker, since at least 2006: <b>$371,865.91 over 138 payments</b> through 2022.</p></div>
+    <div class="flow">
+      <div class="node"><div class="when">Jul 2015</div><div class="card">
+        <div class="tags"><span class="tag">Sam Goldstein</span><span class="tag">IT Committee</span></div>
+        <h3>The IT Committee Looks For A Replacement</h3>
+        <p class="note">Goldstein, an at-large LNC member, chairs the IT Committee. It studies NationBuilder.</p>
+        <p class="say">“The committee has already started discussing the potential of NationBuilder to combine a database project with a website redesign project”<span class="cite">Minutes, Jul 18 2015, p.6</span></p>
+      </div></div>
+      <div class="node"><div class="when">Nov 2015</div><div class="card">
+        <div class="tags"><span class="tag">Sam Goldstein</span></div>
+        <h3>CiviCRM First Appears, As Option Three</h3>
+        <p class="say">“The proposed NationBuilder solution would be a replacement for both our current Raiser’s Edge systems and our website.”<span class="cite">Minutes, Nov 14 2015, p.5</span></p>
+        <p class="say">“Re-skin the website and move to a WordPress back-end, maybe with CiviCRM”<span class="cite">Minutes, Nov 14 2015, p.5 (option 3)</span></p>
+      </div></div>
+      <div class="node"><div class="when">Feb 20, 2016</div><div class="card">
+        <div class="tags"><span class="tag kind">Key finding</span><span class="tag">Sam Goldstein</span></div>
+        <h3>Raiser’s Edge Won’t Release Pledgers’ Card Data</h3>
+        <p class="say">“Raiser’s Edge will not provide us the donor credit card information for our monthly pledgers to facilitate us transferring them to another system.”<span class="cite">Minutes, Feb 20 2016, p.7</span></p>
+        <p class="note">Monthly pledges could not simply be carried over to a new system. When the switch finally came in 2023, recurring revenue held in Raiser’s Edge was lost. <b>Moellman was not at this meeting</b> <span class="cite">attendance, p.1</span>; his first LNC business-list post is June 1, 2016.</p>
+      </div></div>
+    </div>
+  </section>
+
+  <div class="arrow-down" aria-hidden="true">↓</div>
+
+  <!-- PHASE 2 -->
+  <section class="phase" aria-labelledby="p2">
+    <div class="phase-head"><span class="years">2016–2021</span><p class="eyebrow">Phase Two</p><h2 id="p2">Building The State CiviCRM</h2>
+      <p class="note">CiviCRM is built for state affiliates first, with Andy Burns as staff and Moellman as volunteer lead consultant. Raiser’s Edge stays national’s fundraising database.</p></div>
+    <div class="flow">
+      <div class="node"><div class="when">Dec 2016</div><div class="card">
+        <div class="tags"><span class="tag">Ken Moellman</span><span class="tag">IT Committee</span></div>
+        <h3>Moellman Joins And Chairs The IT Committee</h3>
+        <p class="note">Appointed as an LNC member of the committee in September 2016 with Sean O’Toole <span class="cite">Minutes, Dec 10 2016, p.21</span>.</p>
+        <p class="say">“Mr. Moellman, as chair of the IT Committee”<span class="cite">Minutes, Dec 10 2016, p.8</span></p>
+        <p class="note">He resigned from the committee on Dec 9, 2017 <span class="cite">Minutes, Dec 9 2017, p.9</span>.</p>
+      </div></div>
+      <div class="node"><div class="when">Apr 2018</div><div class="card">
+        <div class="tags"><span class="tag">Andy Burns</span><span class="tag">Ken Moellman</span><span class="tag">Ryan Graham</span></div>
+        <h3>Moellman Named Lead Consultant</h3>
+        <p class="say">“I want to give a special thanks to Ken Moellman in his lead consultant role with the project and to Ryan Waterbury, Ryan Graham and all the State IT Directors”<span class="cite">Burns, Affiliate Development Report · Minutes, Apr 21–22 2018, p.27</span></p>
+        <p class="note">The FEC record shows no LNC payment to Moellman before 2025.</p>
+      </div></div>
+      <div class="node"><div class="when">2018–2021</div><div class="card">
+        <div class="tags"><span class="tag">Tadpole Collective</span><span class="tag">Andy Burns</span></div>
+        <h3>Tadpole Collective Builds It, Donors Fund It</h3>
+        <p class="say">“The CRM project is well on its way thanks to Andy Burns and a generous donation of $17,000.00 from George Phillies that led to a matching donation.”<span class="cite">Minutes, Sep 29–30 2018, p.15</span></p>
+        <p class="note">Tadpole Collective, a CiviCRM and WordPress development firm, was paid <b>$67,808.75 over 35 payments</b>, Mar 2018 to Sep 2021, mostly for the “CIVICRM AFFILIATE DATABASE PROJECT.” <span class="cite">FEC</span></p>
+      </div></div>
+      <div class="node"><div class="when">Mar 2019</div><div class="card">
+        <div class="tags"><span class="tag">Ken Moellman</span><span class="tag">Ryan Graham</span><span class="tag">IT Committee</span></div>
+        <h3>Moellman And Graham On The IT Committee Together</h3>
+        <p class="say">“appointed Benjamin Bachrach, Devin Balkind, Juanita Billings, Ryan Thomas Graham, and Ken Moellman”<span class="cite">Minutes, Jul 27–28 2019, p.68</span></p>
+        <p class="note">Graham, of Georgia, became the committee’s vice chair <span class="cite">p.143</span>.</p>
+      </div></div>
+      <div class="node"><div class="when">Feb 2020</div><div class="card">
+        <div class="tags"><span class="tag">Andy Burns</span></div>
+        <h3>Burns Runs The Bridge Between The Two Systems</h3>
+        <p class="note">Among the roles Burns lists for himself in the CRM project:</p>
+        <p class="say">“Data syncing from Raiser's Edge”<span class="cite">Burns report · Minutes, Feb 1–2 2020, p.95</span></p>
+      </div></div>
+      <div class="node"><div class="when">Sep 2020</div><div class="card">
+        <div class="tags"><span class="tag">Daniel Fishman</span><span class="tag">Tadpole Collective</span></div>
+        <h3>The Executive Director Calls The 2021 Exit Date Too Ambitious</h3>
+        <p class="say">“Our plan to move off of Raiser’s Edge by 2021 will need review by the new LNC”<span class="cite">Executive Director’s report · Minutes, Sep 12 2020, p.95</span></p>
+        <p class="say">“We have moved maintenance of most technical aspects of our online presence to the Tadpole Collective, ensuring that there is no single human point of failure for lp.org and the CRM.”<span class="cite">Same report, p.95</span></p>
+      </div></div>
+      <div class="node"><div class="when">Dec 5, 2020</div><div class="card">
+        <div class="tags"><span class="tag">Ken Moellman</span></div>
+        <h3>A Warning At The Table</h3>
+        <p class="note">After Moellman mentions a motion to come, an unnamed speaker on the recording warns against moving fundraising early:</p>
+        <p class="say">“messing with our fundraising database in favor of something we haven't built yet is a big danger”<span class="cite">Recording, <a href="https://www.youtube.com/watch?v=SV-wckFUF1M&amp;t=16853" target="_blank" rel="noopener">LNC Dec 5 2020, 4:40:53</a></span></p>
+      </div></div>
+      <div class="node"><div class="when">Jan 2021</div><div class="card">
+        <div class="tags"><span class="tag">David Aitken</span><span class="tag">Andy Burns</span></div>
+        <h3>The CRM Team Grows</h3>
+        <p class="say">“We have hired David Aitken, LPCO Database Manager to serve as our CRM Success Specialist.”<span class="cite">Burns report · Minutes, Mar 7 2021, p.59</span></p>
+        <p class="note">Burns was paid <b>$408,882.59 over 162 payments</b>, Jul 2015 to Dec 2022, almost all for “affiliate support.” <span class="cite">FEC</span></p>
+      </div></div>
+    </div>
+  </section>
+
+  <div class="arrow-down" aria-hidden="true">↓</div>
+
+  <!-- PHASE 3 -->
+  <section class="phase" aria-labelledby="p3">
+    <div class="phase-head"><span class="years">2021–2022</span><p class="eyebrow">Phase Three</p><h2 id="p3">The Gap Analysis And The Vote To Migrate</h2>
+      <p class="note">The LNC orders a study of what CiviCRM can’t do. The study never reaches the record, and the LNC votes to migrate anyway.</p></div>
+    <div class="flow">
+      <div class="node vote"><div class="when">Dec 5, 2021</div><div class="card">
+        <div class="tags"><span class="tag kind">Motion adopted</span><span class="tag">Ken Moellman</span><span class="tag">Ryan Graham</span></div>
+        <h3>Moellman Moves The Gap Analysis</h3>
+        <p class="say">“Ryan Graham, the Chair of the Libertarian Party of Georgia, has volunteered to lead the analysis on where Civi would fall short in comparison to Raiser’s Edge”<span class="cite">Moellman’s Vice-Chair report · Minutes, Dec 4–5 2021, p.8</span></p>
+        <p class="say">“Mr. Moellman moved to appoint Ryan Graham of Georgia to lead a gap analysis for phasing out Raiser’s Edge by end of 2022, with a report to be provided to the LNC at or prior to the March meeting of the LNC.”<span class="cite">Minutes, Dec 4–5 2021, p.30 · <a href="https://www.youtube.com/watch?v=zokp9gqdp34&amp;t=469" target="_blank" rel="noopener">Recording, 0:07:49</a></span></p>
+        <p class="note">Adopted without objection. Three days later Moellman offered to join the committee to “Assist Ryan Graham in whatever way he needs to complete the gap analysis” <span class="cite">LNC business list, Dec 8 2021</span>.</p>
+      </div></div>
+      <div class="node gapnode"><div class="when">Mar 2022</div><div class="card">
+        <div class="tags"><span class="tag kind">Gap · G2</span></div>
+        <h3>The Deadline Meeting Never Happens</h3>
+        <p class="note">The report was due “at or prior to the March meeting.” <span class="warn">There was no March 2022 LNC meeting.</span> The LNC met Jan 23, then Apr 18, 2022. Neither those minutes nor any 2022 Executive Committee minutes mention the gap analysis.</p>
+      </div></div>
+      <div class="node gapnode"><div class="when">Dec 2021 – Jul 2022</div><div class="card">
+        <div class="tags"><span class="tag kind">Missing document · G1</span><span class="tag">Ryan Graham</span></div>
+        <h3>The Gap Analysis Report</h3>
+        <p class="note">No copy of the report has been found. It is never presented in any minutes. The only written trace is Burns’s July 2022 report:</p>
+        <p class="say">“Please see the separate report on the LNC Raiser's Edge Migration Gap Analysis.”<span class="cite">Minutes, Jul 30–31 2022, p.95 · the report is not attached</span></p>
+      </div></div>
+      <div class="node"><div class="when">Jul 2022</div><div class="card">
+        <div class="tags"><span class="tag">Andy Burns</span><span class="tag">Ken Moellman</span></div>
+        <h3>A State Asks To Keep The Team</h3>
+        <p class="say">“Indiana requests that the LNC continue to support and develop CiviCRM with Andy Burns and Ken Moellman.”<span class="cite">Indiana’s report · Minutes, Jul 30–31 2022, p.167</span></p>
+      </div></div>
+      <div class="node"><div class="when">Jul 31, 2022</div><div class="card">
+        <div class="tags"><span class="tag">Ken Moellman (likely)</span></div>
+        <h3>On The Call: “We Never Met Again”</h3>
+        <p class="note">“Ken and Evan” are dialed in to answer questions on the migration. A caller describes getting a motion passed so staff would cooperate:</p>
+        <p class="say">“so that we could actually get that information and then we never met again”<span class="cite">Recording, <a href="https://www.youtube.com/watch?v=vT2nWqv62Fs&amp;t=1611" target="_blank" rel="noopener">LNC Jul 31 2022, 0:26:51</a></span></p>
+        <p class="say">“you know we've looked at um you know the gap analysis”<span class="cite">Same passage</span></p>
+        <p class="note"><span class="warn">G4:</span> the captions don’t name the speaker. The motion described matches Moellman’s; listen to confirm.</p>
+      </div></div>
+      <div class="node vote"><div class="when">Jul 31, 2022</div><div class="card">
+        <div class="tags"><span class="tag kind">Motion adopted 9-3-3</span><span class="tag">Dustin Nanna</span></div>
+        <h3>The LNC Votes To Leave Raiser’s Edge By Year’s End</h3>
+        <p class="say">“Mr. Nanna moved that we prioritize the Raiser’s Edge migration with the goal of completion by the end of the year and to not renew our re-subscription in January unless we are not finished by that time.”<span class="cite">Minutes, Jul 30–31 2022, p.18</span></p>
+        <p class="note">Secretary Harlos’s motion to postpone it to November: “This motion FAILED with a roll call vote of 3-10-2.” <span class="cite">p.19</span> The main motion: “This motion PASSED with a roll call vote of 9-3-3.” <span class="cite">p.20</span></p>
+      </div></div>
+      <div class="node"><div class="when">Nov–Dec 2022</div><div class="card">
+        <div class="tags"><span class="tag">Ken Moellman</span><span class="tag">Dustin Nanna</span><span class="tag">Andy Burns</span></div>
+        <h3>The Cutover, And Burns’s Exit</h3>
+        <p class="say">“Mr. Nanna and Mr. Moellman led a discussion on the status of the Raiser’s Edge migration.”<span class="cite">Minutes, Nov 5–6 2022, p.15</span></p>
+        <p class="note">Burns’s last FEC payment is Dec 30, 2022, as the switch takes place. Tadpole’s ended in Sep 2021.</p>
+      </div></div>
+    </div>
+  </section>
+
+  <div class="arrow-down" aria-hidden="true">↓</div>
+
+  <!-- PHASE 4 -->
+  <section class="phase" aria-labelledby="p4">
+    <div class="phase-head"><span class="years">2023–2024</span><p class="eyebrow">Phase Four</p><h2 id="p4">CiviCRM Fails As The National Database</h2></div>
+    <div class="flow">
+      <div class="node"><div class="when">Mar 2023</div><div class="card">
+        <div class="tags"><span class="tag">Ken Moellman</span><span class="tag">Jay Norton</span><span class="tag">Andy Buchkovich</span></div>
+        <h3>Moellman Is Now A Volunteer</h3>
+        <p class="say">“Ken Moellman and Jay Norton were given a round of appreciation for their volunteer efforts on CiviCRM project.”<span class="cite">Minutes, Mar 11–12 2023, p.12</span></p>
+        <p class="note">The same session hears CTO Buchkovich’s evaluation of CiviCRM.</p>
+      </div></div>
+      <div class="node vote"><div class="when">Dec 2023</div><div class="card">
+        <div class="tags"><span class="tag kind">Motion adopted 10-2-0</span><span class="tag">Dave Benner</span></div>
+        <h3>The LNC Declares CiviCRM Unsuitable</h3>
+        <p class="say">“CiviCRM has not proven suitable for use for fundraising and membership purposes of the Libertarian National Committee.”<span class="cite">Benner substitute · Minutes, Dec 2–3 2023, p.16</span></p>
+        <p class="note">“This motion PASSED with a roll call vote of 10-2-0.” <span class="cite">p.17</span></p>
+      </div></div>
+      <div class="node gapnode"><div class="when">Feb 2024</div><div class="card">
+        <div class="tags"><span class="tag kind">Gap · G5</span><span class="tag">Angela McArdle</span></div>
+        <h3>The Move To Zoho, With No Vote</h3>
+        <p class="say">“Chair McArdle gave an update on the decision to move to Zoho CRM”<span class="cite">Minutes, Feb 4 2024, p.8</span></p>
+        <p class="note"><span class="warn">No LNC vote choosing Zoho appears in the minutes.</span> Cornerstone Solutions, the Zoho consultant, was paid $67,639.15 from Jan 2024 to Jan 2026. <span class="cite">FEC</span></p>
+      </div></div>
+    </div>
+  </section>
+
+  <div class="arrow-down" aria-hidden="true">↓</div>
+
+  <!-- PHASE 5 -->
+  <section class="phase" aria-labelledby="p5">
+    <div class="phase-head"><span class="years">2024–2026</span><p class="eyebrow">Phase Five</p><h2 id="p5">Moellman Owns CiviCRM; Zoho Data Leaves</h2></div>
+    <div class="flow">
+      <div class="node gapnode"><div class="when">Nov 2024</div><div class="card">
+        <div class="tags"><span class="tag kind">Gap · G6</span><span class="tag">Ken Moellman</span></div>
+        <h3>A Hosting Agreement Outside The Minutes</h3>
+        <p class="note">A CiviCRM hosting agreement with Moellman dates from November 2024. <span class="warn">No LNC or ExCom minutes from Oct 2024 to Apr 2025 mention it.</span> FEC shows $350-a-month payments from January 2025.</p>
+      </div></div>
+      <div class="node vote"><div class="when">Apr 11, 2025</div><div class="card">
+        <div class="tags"><span class="tag kind">Contract signed</span><span class="tag">Steven Nekhaila</span><span class="tag">Moellman Enterprises LLC</span></div>
+        <h3>The Chair Sells The CiviCRM System To Moellman</h3>
+        <p class="say">“all rights, title, and interest in the software assets associated with the CiviCRM and Email system”<span class="cite">Asset transfer contract, p.1 · breach materials</span></p>
+        <p class="note">From signing, LNC changes to the system’s data need Moellman’s approval; LNC access ends Oct 31, 2025. <span class="warn">G7: no LNC or ExCom vote approving the sale was found.</span> Moellman Enterprises was paid $3,552.50 over 10 payments in 2025. <span class="cite">FEC</span></p>
+      </div></div>
+      <div class="node"><div class="when">Sep 2025 – Jan 2026</div><div class="card">
+        <div class="tags"><span class="tag">Kyle Davis</span><span class="tag">IS Committee</span></div>
+        <h3>Full Zoho Backups Leave Through A Shared Account</h3>
+        <p class="note">The shared “IS Committee” Zoho account downloads full CRM backups repeatedly and exports about 200,000 contact records on Jan 8, 2026. Counsel attributes the exports to Kyle Davis. On a call, Davis describes this as something still to come:</p>
+        <p class="say">“the transfer back from Zoho to Civi for the states”<span class="cite">Davis call transcript · breach materials</span></p>
+      </div></div>
+      <div class="node gapnode"><div class="when">Open</div><div class="card">
+        <div class="tags"><span class="tag kind">Open question · G8</span></div>
+        <h3>Did Zoho Member Data Reach Moellman’s CiviCRM?</h3>
+        <p class="note"><span class="warn">No document shows it happened, and none shows it didn’t.</span> The breach investigators reviewed Zoho logs and LNC email; nothing shows them examining CiviCRM or Moellman’s hosting.</p>
+      </div></div>
+    </div>
+  </section>
+
+  <!-- GAPS -->
+  <section aria-labelledby="gaps">
+    <div class="head"><p class="eyebrow">Where The Record Goes Silent</p><h2 id="gaps">Gaps &amp; Missing Documents</h2></div>
+    <div class="grid">
+      <div class="card gapcard"><span class="id">G1</span><h3>The Gap Analysis Report</h3><p class="note">Ordered Dec 2021, due by the March 2022 meeting, cited by Burns in July 2022. Never found.</p>
+        <p class="searched"><b>Searched:</b> LNC minutes Dec 2021–Jul 2022; all seven 2022 ExCom minutes before Jul 31; the LNC business list; meeting recordings; the Wayback Machine’s copies of 2021–22 lp.org uploads; LPedia’s meeting pages.</p></div>
+      <div class="card gapcard"><span class="id">G2</span><h3>The March 2022 LNC Meeting</h3><p class="note">Named as the report’s deadline, but never held. LPedia’s meeting list goes from Jan 23 to Apr 18, 2022.</p></div>
+      <div class="card gapcard"><span class="id">G3</span><h3>IS Committee Records, 2021–22</h3><p class="note">The committee’s own minutes, where the analysis would have been worked on, are not published. Its chair was Liz DelSignore; its secretary was Ryan Graham.</p></div>
+      <div class="card gapcard"><span class="id">G4</span><h3>The Speaker On July 31, 2022</h3><p class="note">The captions don’t name who said “we never met again.” The recording can settle it.</p></div>
+      <div class="card gapcard"><span class="id">G5</span><h3>The Zoho Decision</h3><p class="note">Announced in February 2024 as a “decision”; no vote, contract or price appears in the minutes.</p></div>
+      <div class="card gapcard"><span class="id">G6</span><h3>The 2024 Hosting Agreement</h3><p class="note">Payments to Moellman begin in January 2025, but the agreement is absent from the minutes.</p></div>
+      <div class="card gapcard"><span class="id">G7</span><h3>Approval Of The 2025 Sale</h3><p class="note">No LNC or ExCom vote approving the April 2025 transfer was found.</p></div>
+      <div class="card gapcard"><span class="id">G8</span><h3>Zoho Data In Moellman’s System</h3><p class="note">Whether any exported member data went into the CiviCRM Moellman owned, and on whose authority, is unrecorded either way.</p></div>
+    </div>
+  </section>
+
+  <!-- PEOPLE -->
+  <section aria-labelledby="people">
+    <div class="head"><p class="eyebrow">Who’s Who</p><h2 id="people">The People In This Record</h2></div>
+    <div class="grid">
+      <div class="card person"><h3>Sam Goldstein</h3><p class="role">IT Committee chair, 2014–2016</p><p class="note">Led the first search for a Raiser’s Edge replacement and reported the card-data refusal. No FEC payments.</p></div>
+      <div class="card person"><h3>Ken Moellman</h3><p class="role">IT chair · lead consultant · Vice-Chair · owner</p><p class="note">IT Committee chair 2016–17, CRM lead consultant by 2018, committee member again from 2019, mover of the gap analysis in 2021, volunteer through 2023, and owner of the CiviCRM system from April 2025.</p></div>
+      <div class="card person"><h3>Andy Burns</h3><p class="role">Affiliate development staff, 2015–2022</p><p class="note">Built and ran the state CiviCRM and the sync from Raiser’s Edge. Paid $408,882.59; payments end Dec 30, 2022.</p></div>
+      <div class="card person"><h3>Ryan Graham</h3><p class="role">Georgia chair · IT/IS Committee</p><p class="note">Gave feedback on the CRM in 2018, IT Committee vice chair in 2019, IS Committee secretary in 2021, appointed to lead the gap analysis in December 2021.</p></div>
+      <div class="card person"><h3>Tadpole Collective</h3><p class="role">CiviCRM developer, 2018–2021</p><p class="note">Paid $67,808.75. Maintained lp.org and the CRM from 2020. No payments after September 2021.</p></div>
+      <div class="card person"><h3>David Aitken</h3><p class="role">CRM Success Specialist, 2021–</p><p class="note">Colorado’s database manager, hired onto Burns’s team in January 2021; still on the IT staff under the CTO in late 2023.</p></div>
+      <div class="card person"><h3>Dustin Nanna</h3><p class="role">LNC member</p><p class="note">Moved the July 2022 deadline to leave Raiser’s Edge by year’s end; co-led the November 2022 migration discussion.</p></div>
+      <div class="card person"><h3>Kyle Davis</h3><p class="role">IS Committee volunteer, 2025–26</p><p class="note">Counsel attributes the 2025–26 Zoho exports to him; he says he kept only the schema.</p></div>
+    </div>
+  </section>
+
+  <footer class="fine">Sources: LNC minutes and Executive Committee minutes (lp.org, LPedia, Wayback Machine), the LNC business list, LNC meeting recordings on YouTube, the LNC’s FEC filings, and the board’s released breach materials (Aug 2026). Prepared November 2026.</footer>
+</div>
+
+</body>
+</html>
