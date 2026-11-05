@@ -72,8 +72,8 @@
   .node::before { content: ""; position: absolute; left: calc(7.5rem + 0.625rem - 1px); top: 0.6rem; bottom: 0; width: 2px; background: var(--slate); }
   .node:last-child { padding-bottom: 0; }
   .node:last-child::before { display: none; }
-  .node .when { font-family: var(--serif); font-weight: 700; font-size: 0.95rem; color: var(--gold); text-align: right; padding-top: 1.1rem; font-variant-numeric: tabular-nums; position: relative; }
-  .node .when::after { content: ""; position: absolute; right: calc(-0.625rem - 6px); top: 1.35rem; width: 12px; height: 12px; border-radius: 50%; background: var(--gold); box-shadow: 0 0 0 4px var(--navy); }
+  .node .when { font-family: var(--serif); font-weight: 700; font-size: 0.95rem; color: var(--gold); text-align: right; padding-top: 1.1rem; padding-right: 0.9rem; font-variant-numeric: tabular-nums; position: relative; }
+  .node .when::after { content: ""; box-sizing: border-box; position: absolute; right: calc(-0.625rem - 6px); top: 1.35rem; width: 12px; height: 12px; border-radius: 50%; background: var(--gold); box-shadow: 0 0 0 4px var(--navy); }
   .node.gapnode .when { color: var(--warn); }
   .node.gapnode .when::after { background: var(--navy); border: 2px dashed var(--warn); }
   .node .card { margin-left: 0.6rem; }
@@ -88,7 +88,7 @@
   @media (max-width: 40rem) {
     .node { grid-template-columns: 1fr; gap: 0.4rem; padding-left: 1.4rem; }
     .node::before { left: 0.35rem; top: 0.4rem; }
-    .node .when { text-align: left; padding-top: 0; }
+    .node .when { text-align: left; padding-top: 0; padding-right: 0; }
     .node .when::after { right: auto; left: -1.4rem; top: 0.3rem; }
     .node .card { margin-left: 0; }
     .arrow-down { padding-left: 0; }
