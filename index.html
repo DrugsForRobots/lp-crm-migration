@@ -57,7 +57,7 @@
   a:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; }
 
   /* Key */
-  .key { display: flex; flex-wrap: wrap; gap: 0.75rem 1.5rem; font-size: 0.85rem; color: var(--mist); }
+  .key { display: grid; justify-items: start; gap: 0.55rem; font-size: 0.85rem; color: var(--mist); }
   .key span { display: inline-flex; align-items: center; gap: 0.5rem; }
   .sw { width: 1.4rem; height: 0.9rem; border-radius: 4px; background: var(--panel); display: inline-block; }
   .sw.vote { border: 2px solid var(--gold); }
@@ -183,9 +183,9 @@
     <div class="rule"></div>
     <p class="lede">How the Libertarian National Committee left <b>Raiser’s Edge</b>, built and abandoned <b>CiviCRM</b>, moved to <b>Zoho</b>, sold the CiviCRM system to <b>Ken Moellman</b>, and lost track of who held its member data. This version adds what each person later said about those events, set against the record.</p>
     <div class="key">
-      <span class="chip rec">Record</span> a document, log or filing shows it
-      <span class="chip clm">Claim</span> a person says it
-      <span class="chip inf">Inference</span> our reading
+      <span><span class="chip rec">Record</span> a document, log or filing shows it</span>
+      <span><span class="chip clm">Claim</span> a person says it</span>
+      <span><span class="chip inf">Inference</span> our reading</span>
     </div>
     <div class="key">
       <span><i class="sw"></i> Recorded event</span>
